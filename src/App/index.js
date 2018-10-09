@@ -14,7 +14,6 @@ class App extends Component {
   state = data;
 
   onDragEnd = result => {
-    console.log(this.state)
     const { destination, source, draggableId} = result;
     if(!destination) {
       return;
@@ -23,16 +22,13 @@ class App extends Component {
       return;
     }
     const column = this.state.columns[source.droppableId];
-    console.log(column, 'column')
     const newHeroIds = Array.from(column.heroId);
-    console.log(newHeroIds, 'newHeroIds')
     newHeroIds.splice(source.index, 1);
     newHeroIds.splice(destination.index, 0, draggableId);
     const newColumn = {
       ...column,
       heroId: newHeroIds,
     }
-    console.log(newColumn, 'newColumn')
     const newState = {
       ...this.state,
       columns: {
@@ -40,7 +36,6 @@ class App extends Component {
         [newColumn.id]: newColumn,
       },
     };
-    console.log(newState, 'newState')
     this.setState(newState);
   }
 
