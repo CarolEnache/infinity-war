@@ -34,6 +34,7 @@ export default class Column extends React.Component {
             {...provided.droppableProps}
           >
             {this.props.heroes.map((hero, index) => <Hero key={hero.id} hero={hero} index={index}/>)}
+            {provided.placeholder}
           </HeroList>
         )}
         </Droppable>
