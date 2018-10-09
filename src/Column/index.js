@@ -1,4 +1,5 @@
 import React from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import Hero from '../Hero';
 import styled from 'styled-components';
 
@@ -26,9 +27,16 @@ export default class Column extends React.Component {
     return (
       <Container>
         <Title>{this.props.column.title}</Title>
-        <Hero-List>
-          {this.props.heroes.map(hero => <Hero key={hero.id} hero={hero} />)}
-        </Hero-List>
+        <Droppable droppableId={this.props.column.id}>
+        {(provided) => (
+          <HeroList 
+            innerRef={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {this.props.heroes.map((hero, index) => <Hero key={hero.id} hero={hero} index={index}/>)}
+          </HeroList>
+        )}
+        </Droppable>
       </Container>
     );
   }
