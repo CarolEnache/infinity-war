@@ -10,6 +10,11 @@ const Container = styled.div`
   width: 33%;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 5px 2px #ccc;  
+  &:hover {
+      box-shadow: 2px 4px 5px 4px #ccc;
+  }
 `;
 
 const Title = styled.div`

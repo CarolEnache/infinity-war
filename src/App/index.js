@@ -18,6 +18,7 @@ class App extends Component {
   state = data;
 
   onDragEnd = result => {
+    console.log(this.state)
     const { destination, source, draggableId} = result;
     if(!destination) {
       return;
@@ -26,9 +27,7 @@ class App extends Component {
       return;
     }
     const begin = this.state.columns[source.droppableId];
-    console.log(begin)
     const end = this.state.columns[destination.droppableId];
-    console.log(end)
 
     if(begin === end) {
       const newHeroIds = Array.from(begin.heroId);
@@ -61,6 +60,7 @@ class App extends Component {
       ...end,
       heroId: endHeroIds
     };
+    console.log(newEnd.heroId.length)
 
     const newState = {
       ...this.state,
@@ -82,7 +82,6 @@ class App extends Component {
         </Title>
         <DragDropContext onDragEnd={this.onDragEnd}>
         <Container>
-
           {this.state.columnsort.map(columnId => {
             const column = this.state.columns[columnId];
             const heroes = column.heroId.map(heroId => this.state.heroes[heroId]);
